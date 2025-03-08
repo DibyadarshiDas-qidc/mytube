@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './Home.css'; // Import the new CSS file
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
@@ -23,13 +24,13 @@ const Home = () => {
 
   const renderVideos = videos?.map((video) => {
     return (
-      <div key={video.id}>
-        {video.title}
-        <div>
-          <img src={video.thumbnail} alt={video.title} />
-          <p>{video.description}</p>
+      <div className="video-card" key={video.id}>
+        <img className="video-thumbnail" src={video.thumbnail} alt={video.title} />
+        <div className="video-info">
+          <h3 className="video-title">{video.title}</h3>
+          <p className="video-description">{video.description}</p>
         </div>
-        <video width="640" height="360" controls>
+        <video className="video-player" width="100%" controls>
           <source src={video.videoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -37,7 +38,7 @@ const Home = () => {
     );
   });
 
-  return <>{renderVideos}</>;
+  return <div className="video-grid">{renderVideos}</div>;
 };
 
 export default Home;
